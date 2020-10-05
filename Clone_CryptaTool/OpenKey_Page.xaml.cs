@@ -1,18 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Text;
+﻿using Clone_CryptaTool.Interface;
+using Clone_CryptaTool.Presenter;
+using deffie_hellman;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using deffie_hellman;
 using Vigener;
 
 namespace Clone_CryptaTool
@@ -20,58 +10,36 @@ namespace Clone_CryptaTool
     /// <summary>
     /// Логика взаимодействия для OpenKey_Page.xaml
     /// </summary>
-    public partial class OpenKey_Page : Page
+    public partial class OpenKey_Page : Page, IView_OpenKey_Page
     {
         OpenKey Alice_Open_key;
         OpenKey Bob_Open_key;
         Cipher_Vigener vigener = new Cipher_Vigener();
+        private Presenter_OpenKey presenter_openKey;
+
+        public string messageToUser1 { get => TextBox_Chat1.Text; set => TextBox_Chat1.Text += value.ToString() + "\n"; }
+        public string messageToUser2 { get => TextBox_Chat2.Text; set => TextBox_Chat2.Text += value.ToString() + "\n"; }
+        public string openKeyUser1 { get => TextBlock_Alice_Key.Content.ToString(); set => TextBlock_Alice_Key.Content = value.ToString(); }
+        public string openKeyUser2 { get => TextBlock_Bob_Key.Content.ToString(); set => TextBlock_Bob_Key.Content = value.ToString(); }
+        public string encryptedMessage_FromAlice { get => all__Message_box.Text; set => all__Message_box.Text += "Алиса: " + value.ToString() + "\n"; }
+        public string encryptedMessage_FromBob { get => all__Message_box.Text; set => all__Message_box.Text += "Боб: " + value.ToString() + "\n"; }
+
+        public string messageFromUser1 { get => TextBox_message_box1.Text; set => TextBox_message_box1.Text = value.ToString(); }
+        public string messageFromUser2 { get => TextBox_message_box2.Text; set => TextBox_message_box2.Text = value.ToString(); }
         public OpenKey_Page()
         {
-            Alice_Open_key = new OpenKey();
-            Bob_Open_key = new OpenKey(Alice_Open_key.A, Alice_Open_key.Exp, Alice_Open_key.Main_1);
-            Alice_Open_key.fin_key(Bob_Open_key.A);
             InitializeComponent();
-            Alice_Key.Content += Alice_Open_key.Fin.ToString();
-            Bob_key.Content += Bob_Open_key.Fin.ToString();
-        }
-
-        public static string EncodeDecrypt(string str, BigInteger secretKey)
-        {
-            var ch = str.ToArray(); //преобразуем строку в символы
-            string newStr = "";      //переменная которая будет содержать зашифрованную строку
-            foreach (var c in ch)  //выбираем каждый элемент из массива символов нашей строки
-                newStr += TopSecret(c, secretKey);  //производим шифрование каждого отдельного элемента и сохраняем его в строку
-            return newStr;
-        }
-
-        public static char TopSecret(char character, BigInteger secretKey)
-        {
-
-            character = (char)(character * secretKey); //Производим XOR операцию
-            return character;
-        }
-
-        public static string DecodeDecrypt(string str, BigInteger secretKey)
-        {
-            var ch = str.ToArray(); //преобразуем строку в символы
-            string newStr = "";      //переменная которая будет содержать зашифрованную строку
-            foreach (var c in ch)  //выбираем каждый элемент из массива символов нашей строки
-                newStr += TopSecret(c, secretKey);  //производим шифрование каждого отдельного элемента и сохраняем его в строку
-            return newStr;
+            presenter_openKey = new Presenter_OpenKey(this);
         }
 
         private void Bob_Message_button_Click(object sender, RoutedEventArgs e)
         {
-            string st = vigener.Encode(mess_box2.Text, Bob_Open_key.Fin.ToString());
-            all_box.Text += "Боб: " + st + "\n";
-            Chat1.Text += "Боб: " + vigener.Decode(st, Bob_Open_key.Fin.ToString()) + "\n";
+            presenter_openKey.SendMessageFromBob();
         }
 
         private void Alice_Message_button_Click(object sender, RoutedEventArgs e)
         {
-            string st = vigener.Encode(mess_box1.Text, Alice_Open_key.Fin.ToString());
-            all_box.Text += "Алиса: " + st + "\n";
-            Chat2.Text += "Алиса: " + vigener.Decode(st, Alice_Open_key.Fin.ToString()) + "\n";
+            presenter_openKey.SendMessageFromAllice();
         }
     }
 }

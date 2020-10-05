@@ -1,20 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Diagnostics;
-using System.Windows.Media.Effects;
-using System.Linq.Expressions;
+
 
 namespace RandomNumberGenerator
 {
-    class RandomGenerator
+    public class RandomGenerator
     {
         private PerformanceCounter memoryCounter;
         private PerformanceCounter CPUCounter;
-        private DateTime cuurentTime = new DateTime();
-
+        private DateTime currentTime;
         private long seed;
-        public RandomGenerator ()
+
+        public RandomGenerator()
         {
             memoryCounter = new System.Diagnostics.PerformanceCounter();
             memoryCounter.CategoryName = "Memory";
@@ -26,23 +23,38 @@ namespace RandomNumberGenerator
             CPUCounter.InstanceName = "_Total";
         }
 
-       public  RandomGenerator(long seed)
+        public RandomGenerator(long seed)
         {
+            memoryCounter = new System.Diagnostics.PerformanceCounter();
+            memoryCounter.CategoryName = "Memory";
+            memoryCounter.CounterName = "Available MBytes";
+            CPUCounter = new System.Diagnostics.PerformanceCounter();
+            CPUCounter.CategoryName = "Processor";
+            CPUCounter.CounterName = "% Processor Time";
+            CPUCounter.InstanceName = "_Total";
             this.seed = seed;
         }
 
-        public long next ()
+        public long next()
         {
+            long memory = memoryCounter.RawValue;
+            long cpu = CPUCounter.RawValue;
+            currentTime = DateTime.Now;
             long nextNumber = 0;
-            if (seed == null)
-                ;
+            if (seed != 0)
+            {
+                nextNumber = Math.Abs(memory * cpu * currentTime.Ticks * seed);
+            }
             else
             {
-                long memory = memoryCounter.RawValue;
-
+                nextNumber = Math.Abs(memory * cpu * currentTime.Ticks);
             }
-
             return nextNumber;
+        }
+        public long next(long firtArrangement, long secondArrangment)
+        {
+            long numberBetween = next() % (secondArrangment - firtArrangement + 1) + firtArrangement;
+            return numberBetween;
         }
     }
 }

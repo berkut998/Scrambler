@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Atbash
+﻿namespace Atbash
 {
-    class Cipher_Atbash
+    public class Cipher_Atbash
     {
         static private char[] characters = new char[] {
                                                 'а','б','в','г','д','е','ё','ж','з','и','й','к',
@@ -19,7 +13,7 @@ namespace Atbash
                                                 '8', '9', '0','.',','};
         static private int N = characters.Length;
 
-        public string Encode (string Not_encrypted_string)
+        public string Encode(string Not_encrypted_string)
         {
             string encrypted = "";
             foreach (char element in Not_encrypted_string)
@@ -36,9 +30,9 @@ namespace Atbash
             return encrypted;
         }
 
-        public string decrypt (string encrypted_string)
+        public string decrypt(string encrypted_string)
         {
-            string decrypted ="";
+            string decrypted = "";
             foreach (char element in encrypted_string)
             {
                 for (int i = 0; i < characters.Length; i++)

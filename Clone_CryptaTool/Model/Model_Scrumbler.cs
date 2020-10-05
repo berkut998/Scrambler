@@ -1,20 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Vigener;
+﻿using Atbash;
 using deffie_hellman;
 using Net_Festiel;
-using Atbash;
 using RandomNumberGenerator;
+using Vigener;
 
 namespace Clone_CryptaTool
 {
-    class Model
+    class Model_Scrumbler
     {
         public string beforeText { get; set; }
         public string afterText { get; set; }
         public string keyWord { get; set; }
-        public long randomNamber { get; set; }
+        public long randNumber { get; set; }
         public void encodeToAtabash()
         {
             Cipher_Atbash cipher_Atbash = new Cipher_Atbash();
@@ -30,7 +27,7 @@ namespace Clone_CryptaTool
         public void encodeToVigener()
         {
             Cipher_Vigener cipher_Vigener = new Cipher_Vigener();
-            afterText = cipher_Vigener.Encode(beforeText,keyWord);
+            afterText = cipher_Vigener.Encode(beforeText, keyWord);
         }
 
 
@@ -52,20 +49,21 @@ namespace Clone_CryptaTool
         {
             Festiel_algoritm festiel = new Festiel_algoritm();
             string key = keyWord;
-            afterText = festiel.encodeFestiel(beforeText,ref key);
+            afterText = festiel.encodeFestiel(beforeText, ref key);
             keyWord = key;
         }
         public void decodeFromFestiel()
         {
             Festiel_algoritm festiel = new Festiel_algoritm();
             string key = keyWord;
-            afterText = festiel.decodeFestiel(beforeText,ref key);
+            afterText = festiel.decodeFestiel(beforeText, ref key);
             keyWord = key;
         }
 
-        public void randomNumber ()
+        public void randomNumber()
         {
             RandomGenerator random = new RandomGenerator();
+            randNumber = random.next();
         }
 
 

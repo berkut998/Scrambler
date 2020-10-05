@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Net_Festiel
 {
@@ -159,7 +155,7 @@ namespace Net_Festiel
             return input;
         }
 
-        public string encodeFestiel (string inputText,ref string key)
+        public string encodeFestiel(string inputText, ref string key)
         {
             string Mystring = inputText;
             string tmpkey = key;
@@ -183,7 +179,7 @@ namespace Net_Festiel
 
         }
 
-        public string decodeFestiel(string inputText,ref string key)
+        public string decodeFestiel(string inputText, ref string key)
         {
             string s = inputText;
             string tmpkey = StringToBinaryFormat(key);

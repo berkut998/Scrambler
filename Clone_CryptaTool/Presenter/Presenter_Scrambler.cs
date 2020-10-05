@@ -1,24 +1,21 @@
 ﻿using Clone_CryptaTool.Interface;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 
 
 namespace Clone_CryptaTool
 {
-    class Presenter
+    class Presenter_Scrambler
     {
-        private IView view;
-        private Model model;
+        private IView_Scrambler_Page view;
+        private Model_Scrumbler model;
 
-        public Presenter(IView view)
+        public Presenter_Scrambler(IView_Scrambler_Page view)
         {
             this.view = view;
-            this.model = new Model();
+            this.model = new Model_Scrumbler();
         }
 
-        public void encode ()
+        public void encode()
         {
             model.beforeText = view.beforeText;
             model.keyWord = view.keyWord;
@@ -30,12 +27,12 @@ namespace Clone_CryptaTool
             {
                 model.encodeToFestiel();
                 view.keyWord = model.keyWord;
-            } 
+            }
             if (view.currentOperation == 3)
                 model.encodeToUseOpenKey();
             if (view.currentOperation == 4)
                 model.encodeToAtabash();
-            view.afterText = model.afterText;            
+            view.afterText = model.afterText;
         }
         public void decode()
         {
@@ -46,7 +43,7 @@ namespace Clone_CryptaTool
             if (view.currentOperation == 1)
                 model.decodeFromVigener();
             if (view.currentOperation == 2)
-            { 
+            {
                 model.decodeFromFestiel();
                 view.keyWord = model.keyWord;
             }

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Numerics;
 
 namespace deffie_hellman
@@ -14,9 +10,9 @@ namespace deffie_hellman
         public BigInteger Main_1 { get; }
         public BigInteger Exp { get; }
         private BigInteger priv_1;
-        public BigInteger Fin;             
-        public BigInteger A  { get; }
-        public OpenKey ()
+        public BigInteger Fin;
+        public BigInteger A { get; }
+        public OpenKey()
         {
             Random random = new Random();
             Exp = getRandom(random.Next(begin_diapason, end_diapason));
@@ -30,7 +26,7 @@ namespace deffie_hellman
             {
                 Main_1 = getRandom(random.Next(begin_diapason, end_diapason));
             }
-             A = BigInteger.ModPow(Main_1, priv_1, Exp);
+            A = BigInteger.ModPow(Main_1, priv_1, Exp);
         }
 
         public OpenKey(BigInteger a, BigInteger exp, BigInteger main_1)

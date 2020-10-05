@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30517.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Clone_CryptaTool", "Clone_CryptaTool\Clone_CryptaTool.csproj", "{E62CE638-FE3E-4BA0-B2A9-AC797BA504F5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NUnitTestProject1", "NUnitTestProject1\NUnitTestProject1.csproj", "{0B2BE721-2E4C-46D2-83E6-14D78E808836}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{E62CE638-FE3E-4BA0-B2A9-AC797BA504F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E62CE638-FE3E-4BA0-B2A9-AC797BA504F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E62CE638-FE3E-4BA0-B2A9-AC797BA504F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B2BE721-2E4C-46D2-83E6-14D78E808836}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B2BE721-2E4C-46D2-83E6-14D78E808836}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B2BE721-2E4C-46D2-83E6-14D78E808836}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B2BE721-2E4C-46D2-83E6-14D78E808836}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
