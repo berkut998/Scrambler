@@ -9,6 +9,8 @@ To install the project in the release folder there is an executable [mysetup.exe
 
 Application screenshots:
 
+![image](https://user-images.githubusercontent.com/66470614/114553708-9a0fe280-9c6e-11eb-8244-4019f418ac9b.png)
+
 ![image](https://user-images.githubusercontent.com/66470614/114553144-0211f900-9c6e-11eb-8960-7846fcdfcb9e.png)
 
 ![image](https://user-images.githubusercontent.com/66470614/114553236-1b1aaa00-9c6e-11eb-9840-90d67222e479.png)
